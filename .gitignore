@@ -1,0 +1,64 @@
+# Visual Studio 2022
+.vs/
+*.user
+*.suo
+*.cache
+*.ilk
+*.log
+*.ncb
+*.obj
+*.pch
+*.pdb
+*.tlog
+*.VC.db
+*.VC.opendb
+
+# Build
+bin/
+obj/
+*.exe
+*.dll
+*.so
+*.dylib
+*.lib
+*.a
+*.exp
+*.idb
+*.ipdb
+*.iobj
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+
+# Publish
+publish/
+*.Publish.xml
+app.publish/
+
+# Debugging
+*.pdb
+*.cache
+*.pidb
+*.svclog
+TestResults/
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Rider
+.idea/
+
+# Azure
+local.settings.json
+
+# Windows Forms Designer
+#*.Designer.cs
+
+# Misc
+Thumbs.db
+Desktop.ini
