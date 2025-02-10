@@ -1,4 +1,5 @@
-﻿using FormsCadastro.model;
+﻿using FormsCadastro.controller;
+using FormsCadastro.model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,8 @@ namespace FormsCadastro.views
 {
     public partial class FormCadPessoa : Form
     {
+        ConexaoMySQL conexaoMySQL;
+
         public FormCadPessoa()
         {
             InitializeComponent();
@@ -21,6 +24,16 @@ namespace FormsCadastro.views
         private void FormCadPessoa_Load(object sender, EventArgs e)
         {
             limparTela();
+            DadosConexao dadosConexao = new DadosConexao(
+                    "localhost",
+                    "root",
+                    "123456",
+                    "CadPessoas",
+                    3306
+                );
+            conexaoMySQL = new ConexaoMySQL(dadosConexao);
+            if (conexaoMySQL.conectar())
+                MessageBox.Show("Conectado no banco de dados!");
         }
 
         private void limparTela()
@@ -29,6 +42,7 @@ namespace FormsCadastro.views
             txtEmail.Clear();
             txtTelefone.Clear();
             txtNome.Focus();
+            txtCodigo.Text = "0";
         }
 
         private bool verificaTela()
@@ -61,6 +75,7 @@ namespace FormsCadastro.views
                     pessoa.nome = txtNome.Text;
                     pessoa.email = txtEmail.Text;
                     pessoa.telefone = txtTelefone.Text;
+                    pessoa.codigo = int.Parse(txtCodigo.Text);
 
                     //gravar em BD
                     MessageBox.Show("Pessoa: " + pessoa.ToString(), "CAdastro de Pessoa",

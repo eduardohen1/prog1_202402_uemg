@@ -35,6 +35,7 @@
             txtTelefone = new TextBox();
             label3 = new Label();
             bntGravar = new Button();
+            txtCodigo = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -95,11 +96,20 @@
             bntGravar.UseVisualStyleBackColor = true;
             bntGravar.Click += bntGravar_Click;
             // 
+            // txtCodigo
+            // 
+            txtCodigo.Location = new Point(12, 125);
+            txtCodigo.Name = "txtCodigo";
+            txtCodigo.Size = new Size(32, 23);
+            txtCodigo.TabIndex = 5;
+            txtCodigo.Visible = false;
+            // 
             // FormCadPessoa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(266, 160);
+            Controls.Add(txtCodigo);
             Controls.Add(bntGravar);
             Controls.Add(txtTelefone);
             Controls.Add(label3);
@@ -125,5 +135,6 @@
         private TextBox txtTelefone;
         private Label label3;
         private Button bntGravar;
+        private TextBox txtCodigo;
     }
 }

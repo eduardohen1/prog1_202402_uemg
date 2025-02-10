@@ -13,18 +13,30 @@ namespace FormsCadastro.model
         public string email { get; set; }
         public string telefone { get; set; }
 
+        public int codigo { get; set; }
+
         //método construtor
         public Pessoa(string nome, string email, string telefone)
         {
             this.nome = nome;
             this.email = email;
             this.telefone = telefone;
+            this.codigo = 0;
         }
         public Pessoa()
         {
             this.nome = "";
             this.email = "";
             this.telefone = "";
+            this.codigo = 0;
+        }
+        public Pessoa(int codigo, string nome, string email, string telefone)
+        {
+            this.codigo = codigo;
+            this.nome = nome;
+            this.email = email;
+            this.telefone = telefone;
+            this.codigo = 0;
         }
 
         public string ToString()
