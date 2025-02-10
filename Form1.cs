@@ -1,4 +1,5 @@
 using FormsCadastro.model;
+using FormsCadastro.views;
 
 namespace FormsCadastro
 {
@@ -26,6 +27,7 @@ namespace FormsCadastro
 
         private void cadastroDePessoasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /*
             Pessoa pessoa = new Pessoa();
             pessoa.nome = "Eduardo";
             pessoa.email = "a@a.com";
@@ -34,7 +36,10 @@ namespace FormsCadastro
             MessageBox.Show("Pessoa: " + pessoa.ToString(), "Titulo",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
             //pessoa.ToString();
-
+            */
+            FormCadPessoa formCadPessoa = new FormCadPessoa();
+            formCadPessoa.MdiParent = this;
+            formCadPessoa.Show();
         }
     }
 }
