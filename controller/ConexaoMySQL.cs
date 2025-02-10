@@ -84,25 +84,25 @@ namespace FormsCadastro.controller
             MySqlCommand comando;
             try
             {
-                if(pessoa.codigo == 0)
+                if (pessoa.codigo == 0)
                 {
                     //insert
                     sql = "INSERT INTO pessoas(nome, email, telefone) " +
-                          "values('" + pessoa.nome + "','" + pessoa.email + "','" 
+                          "VALUES('" + pessoa.nome + "','" + pessoa.email + "','"
                           + pessoa.telefone + "')";
                 }
                 else
                 {
                     //update
                     sql = "UPDATE pessoa SET " +
-                            "nome     = '" + pessoa.nome     + "', " +
-                            "email    = '" + pessoa.email    + "', " +
+                            "nome     = '" + pessoa.nome + "', " +
+                            "email    = '" + pessoa.email + "', " +
                             "telefone = '" + pessoa.telefone + "'  " +
                           "WHERE codigo = " + pessoa.codigo;
                 }
-                comando = new MySqlCommand(sql, conexao);
-                comando.ExecuteNonQuery();
-                comando.Dispose();
+                comando = new MySqlCommand(sql, conexao); //instancio a conexao
+                comando.ExecuteNonQuery(); //executo a operação
+                comando.Dispose(); //desaloca o comando da memória.
                 resposta = true;
             }
             catch (Exception ex)
@@ -115,6 +115,6 @@ namespace FormsCadastro.controller
                 resposta = false;
             }
             return resposta;
-
+        }
     }
 }
