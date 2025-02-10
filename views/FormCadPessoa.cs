@@ -78,10 +78,12 @@ namespace FormsCadastro.views
                     pessoa.codigo = int.Parse(txtCodigo.Text);
 
                     //gravar em BD
-                    MessageBox.Show("Pessoa: " + pessoa.ToString(), "CAdastro de Pessoa",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    limparTela();
+                    if (conexaoMySQL.gravarPessoa(pessoa))
+                    {
+                        MessageBox.Show("Cadastro gravado com sucesso!", "Cdastro de Pessoa",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        limparTela();
+                    }
                 }
             }
             catch (Exception ex)
