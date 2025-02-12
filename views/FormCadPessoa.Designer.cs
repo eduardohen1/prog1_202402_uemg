@@ -36,6 +36,11 @@
             label3 = new Label();
             bntGravar = new Button();
             txtCodigo = new TextBox();
+            btnNovo = new Button();
+            btnExcluir = new Button();
+            btnPosterior = new Button();
+            btnAnterior = new Button();
+            btnFechar = new Button();
             SuspendLayout();
             // 
             // label1
@@ -88,27 +93,82 @@
             // 
             // bntGravar
             // 
-            bntGravar.Location = new Point(156, 117);
+            bntGravar.Location = new Point(258, 59);
             bntGravar.Name = "bntGravar";
             bntGravar.Size = new Size(75, 23);
-            bntGravar.TabIndex = 4;
+            bntGravar.TabIndex = 7;
             bntGravar.Text = "Gravar";
             bntGravar.UseVisualStyleBackColor = true;
             bntGravar.Click += bntGravar_Click;
             // 
             // txtCodigo
             // 
-            txtCodigo.Location = new Point(12, 125);
+            txtCodigo.Location = new Point(12, 114);
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new Size(32, 23);
             txtCodigo.TabIndex = 5;
             txtCodigo.Visible = false;
             // 
+            // btnNovo
+            // 
+            btnNovo.Location = new Point(258, 30);
+            btnNovo.Name = "btnNovo";
+            btnNovo.Size = new Size(75, 23);
+            btnNovo.TabIndex = 6;
+            btnNovo.Text = "Novo";
+            btnNovo.UseVisualStyleBackColor = true;
+            btnNovo.Click += btnNovo_Click;
+            // 
+            // btnExcluir
+            // 
+            btnExcluir.Location = new Point(258, 88);
+            btnExcluir.Name = "btnExcluir";
+            btnExcluir.Size = new Size(75, 23);
+            btnExcluir.TabIndex = 8;
+            btnExcluir.Text = "Excluir";
+            btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += button2_Click;
+            // 
+            // btnPosterior
+            // 
+            btnPosterior.Location = new Point(190, 117);
+            btnPosterior.Name = "btnPosterior";
+            btnPosterior.Size = new Size(41, 23);
+            btnPosterior.TabIndex = 5;
+            btnPosterior.Text = "⏩";
+            btnPosterior.UseVisualStyleBackColor = true;
+            btnPosterior.Click += btnPosterior_Click;
+            // 
+            // btnAnterior
+            // 
+            btnAnterior.Location = new Point(89, 117);
+            btnAnterior.Name = "btnAnterior";
+            btnAnterior.Size = new Size(41, 23);
+            btnAnterior.TabIndex = 4;
+            btnAnterior.Text = "⏪";
+            btnAnterior.UseVisualStyleBackColor = true;
+            btnAnterior.Click += btnAnterior_Click;
+            // 
+            // btnFechar
+            // 
+            btnFechar.Location = new Point(258, 117);
+            btnFechar.Name = "btnFechar";
+            btnFechar.Size = new Size(75, 23);
+            btnFechar.TabIndex = 9;
+            btnFechar.Text = "Fechar";
+            btnFechar.UseVisualStyleBackColor = true;
+            btnFechar.Click += btnFechar_Click;
+            // 
             // FormCadPessoa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(266, 160);
+            ClientSize = new Size(350, 168);
+            Controls.Add(btnFechar);
+            Controls.Add(btnAnterior);
+            Controls.Add(btnPosterior);
+            Controls.Add(btnExcluir);
+            Controls.Add(btnNovo);
             Controls.Add(txtCodigo);
             Controls.Add(bntGravar);
             Controls.Add(txtTelefone);
@@ -136,5 +196,11 @@
         private Label label3;
         private Button bntGravar;
         private TextBox txtCodigo;
+        private Button btnNovo;
+        private Button btnExcluir;
+        private Button btnPosterior;
+        private Button btnAnterior;
+        public Button btnFechar;
+        private Button button5;
     }
 }

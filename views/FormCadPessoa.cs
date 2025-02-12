@@ -92,5 +92,103 @@ namespace FormsCadastro.views
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        //botão de excluir
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (int.Parse(txtCodigo.Text) > 0)
+            {
+                if (
+                    MessageBox.Show("Deseja realmente excluir esse registro?",
+                                    "Título APP",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question) == DialogResult.Yes
+                    )
+                {
+                    if (conexaoMySQL.deletar(int.Parse(txtCodigo.Text)))
+                    {
+                        MessageBox.Show("Dados deletados com sucesso!",
+                                        "Título APP",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+                        limparTela();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Os dados não foram deletados!",
+                                    "Título APP",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void btnPosterior_Click(object sender, EventArgs e)
+        {
+            if (txtCodigo.Text.Length == 0)
+                txtCodigo.Text = "0";
+
+            int id = int.Parse(txtCodigo.Text);
+            try
+            {
+                Pessoa pessoa = conexaoMySQL.buscar(id, ">");
+                if (pessoa.codigo > 0)
+                {
+                    txtCodigo.Text = pessoa.codigo.ToString();
+                    txtNome.Text = pessoa.nome;
+                    txtEmail.Text = pessoa.email;
+                    txtTelefone.Text = pessoa.telefone;
+                }
+                else
+                {
+                    limparTela();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message, "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (txtCodigo.Text.Length == 0)
+                txtCodigo.Text = "0";
+
+            int id = int.Parse(txtCodigo.Text);
+            try
+            {
+                Pessoa pessoa = conexaoMySQL.buscar(id, "<");
+                if (pessoa.codigo > 0)
+                {
+                    txtCodigo.Text = pessoa.codigo.ToString();
+                    txtNome.Text = pessoa.nome;
+                    txtEmail.Text = pessoa.email;
+                    txtTelefone.Text = pessoa.telefone;
+                }
+                else
+                {
+                    limparTela();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message, "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            limparTela();
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

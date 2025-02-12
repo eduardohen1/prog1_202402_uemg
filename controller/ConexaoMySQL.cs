@@ -95,13 +95,13 @@ namespace FormsCadastro.controller
                 {
                     //update
                     sql = "UPDATE pessoa SET " +
-                            "nome     = '" + pessoa.nome + "', " +
-                            "email    = '" + pessoa.email + "', " +
-                            "telefone = '" + pessoa.telefone + "'  " +
+                            "nome     = '"  + pessoa.nome     + "', " +
+                            "email    = '"  + pessoa.email    + "', " +
+                            "telefone = '"  + pessoa.telefone + "'  " +
                           "WHERE codigo = " + pessoa.codigo;
                 }
                 comando = new MySqlCommand(sql, conexao); //instancio a conexao
-                comando.ExecuteNonQuery(); //executo a operação
+                comando.ExecuteNonQuery(); //executo a operação - query sem retorno de dados
                 comando.Dispose(); //desaloca o comando da memória.
                 resposta = true;
             }
@@ -116,5 +116,80 @@ namespace FormsCadastro.controller
             }
             return resposta;
         }
+
+        /// <summary>
+        /// Rotina para buscar os dados no banco de dados
+        /// </summary>
+        /// <param name="id">Código presente no campo txtCodigo</param>
+        /// <param name="tipoConsulta">Caractere '>' buscar próximo; Caractere '<' buscar anterior</param>
+        /// <returns>Objeto Pessoa em branco ou com dados do Banco de Dados</returns>
+        public Pessoa buscar(int id, string tipoConsulta)
+        {
+            Pessoa pessoa = new Pessoa();
+            string sql = "";
+            MySqlCommand comando;
+            MySqlDataReader dataReader;
+
+            try
+            {
+                sql = "SELECT * FROM pessoas ";
+                if (tipoConsulta.Equals("<"))
+                {
+                    sql += " WHERE id < " + id + " ORDER BY id DESC LIMIT 1";
+                }
+                else
+                {
+                    sql += " WHERE id > " + id + " ORDER BY id ASC LIMIT 1";
+                }
+                comando = new MySqlCommand(sql, conexao);
+                dataReader = comando.ExecuteReader(); //query com retorno de dados (tabela)
+                if (dataReader.HasRows) //verifico se o dataRead tem dados/linhas
+                {
+                    while(dataReader.Read())//leio as linhas individualmente
+                    {
+                        pessoa.nome     = dataReader["nome"].ToString();
+                        pessoa.email    = dataReader["email"].ToString();
+                        pessoa.telefone = dataReader["telefone"].ToString();
+                        pessoa.codigo = int.Parse(dataReader["id"].ToString());
+                    }
+                }
+                //desaloco da memória
+                dataReader.Dispose();
+                dataReader.Close();
+                comando.Dispose();                
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar Pessoa no banco de dados (id=" + id + "):\n" +
+                                   ex.ToString(),
+                                   "Título do APP",
+                                   MessageBoxButtons.OK,
+                                   MessageBoxIcon.Error);
+            }
+            return pessoa;
+        }
+
+        public bool deletar(int id)
+        {
+            bool resposta = false;
+            MySqlCommand comando;
+            string sql = "DELETE FROM pessoas WHERE id = " + id;
+            try
+            {
+                comando = new MySqlCommand(sql, conexao);
+                comando.ExecuteNonQuery(); //executar o comando sem retorno
+                comando.Dispose();
+                resposta = true;
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Erro ao excluir Pessoa no banco de dados (id=" + id + "):\n" +
+                                   ex.ToString(),
+                                   "Título do APP",
+                                   MessageBoxButtons.OK,
+                                   MessageBoxIcon.Error);
+                resposta = false;
+            }
+            return resposta;
+        }
+
     }
 }
