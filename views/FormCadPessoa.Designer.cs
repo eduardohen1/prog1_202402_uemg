@@ -107,7 +107,6 @@
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new Size(32, 23);
             txtCodigo.TabIndex = 5;
-            txtCodigo.Visible = false;
             // 
             // btnNovo
             // 
@@ -141,6 +140,7 @@
             // 
             // btnAnterior
             // 
+            btnAnterior.AccessibleDescription = "Navegar para o registro anterior";
             btnAnterior.Location = new Point(89, 117);
             btnAnterior.Name = "btnAnterior";
             btnAnterior.Size = new Size(41, 23);
